@@ -53,6 +53,6 @@ stages:
       displayName: Publish Nuget to Artifact
       inputs:
         command: 'push'
-        # packagesToPush: '**/*.nupkg'
+        packagesToPush: '$(Build.ArtifactStagingDirectory)/*.nupkg'
         nuGetFeedType: 'internal'
-        publishVstsFeed: '3307e111-32b3-43f3-8bf5-b35dc822d64e'
+        publishVstsFeed: 'bf6ceb81-0217-4c7b-a27e-44d755d73986'
