@@ -27,12 +27,14 @@ stages:
         arguments: '--configuration $(BuildConfiguration)'
     
     - task: DotNetCoreCLI@2
+      displayName: Build
       inputs:
         command: 'build'
         projects: '**/*.csproj'
         arguments: '--configuration $(BuildConfiguration)'
 
     - task: DotNetCoreCLI@2
+      displayName: Pack
       inputs:
         command: 'pack'
         packagesToPack: '**/*.csproj'
@@ -40,11 +42,26 @@ stages:
         versioningScheme: 'off'
 
     - task: PublishBuildArtifacts@1
+      displayName: Publish to Artifact/drop
       inputs:
         ArtifactName: 'drop'
         PathtoPublish: '**/*.nupkg'
         publishLocation: 'Container'
     
+- stage: Release_Stage
+  displayName: Release Stage
+  jobs:
+  - job: ReleaseNuget
+    displayName: Release Nuget Package Job
+    variables:
+      BuildConfiguration: release
+    steps:
 
-
+    - task: DotNetCoreCLI@2
+      displayName: Restore
+      inputs:
+        command: publish
+        projects: '**/*.csproj'
+        arguments: '--configuration $(BuildConfiguration)'
+    
 
