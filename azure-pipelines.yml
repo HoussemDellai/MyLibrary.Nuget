@@ -48,21 +48,13 @@ stages:
         ArtifactName: 'drop'
         PathtoPublish: '$(Build.ArtifactStagingDirectory)/*.nupkg'
         publishLocation: 'Container'
-    
-- stage: Release_Stage
-  displayName: Release Stage
-  jobs:
+
   - job: ReleaseNuget
     displayName: Release Nuget Packages
-    variables:
-      BuildConfiguration: release
     steps:
-
     - task: DotNetCoreCLI@2
       inputs:
         command: 'push'
         packagesToPush: '**/*.nupkg'
         nuGetFeedType: 'internal'
         publishVstsFeed: '3307e111-32b3-43f3-8bf5-b35dc822d64e'
-    
-
