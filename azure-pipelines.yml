@@ -43,12 +43,16 @@ stages:
 
     - task: CmdLine@2
       inputs:
-        script: 'ls -l'
+        script: |
+          ls -l
+          dir
+
+
 
     - task: DotNetCoreCLI@2
       displayName: Publish Nuget to Artifact
       inputs:
         command: 'push'
-        packagesToPush: '**/*.nupkg'
+        # packagesToPush: '**/*.nupkg'
         nuGetFeedType: 'internal'
         publishVstsFeed: '3307e111-32b3-43f3-8bf5-b35dc822d64e'
