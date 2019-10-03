@@ -38,6 +38,12 @@ stages:
         packagesToPack: '**/*.csproj'
         arguments: '--configuration $(BuildConfiguration)'
         versioningScheme: 'off'
+
+    - task: PublishBuildArtifacts@1
+      inputs:
+        ArtifactName: 'drop'
+        PathtoPublish: '$(Build.ArtifactStagingDirectory)/.nupkg'
+        publishLocation: 'Container'
     
 
 
