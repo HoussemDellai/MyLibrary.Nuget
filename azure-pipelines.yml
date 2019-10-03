@@ -14,7 +14,7 @@ stages:
   displayName: Build Stage
   jobs:
   - job: BuildNuget
-    displayName: Build Nuget App Job
+    displayName: Build Nuget packages
     variables:
       BuildConfiguration: release
     steps:
@@ -52,7 +52,7 @@ stages:
   displayName: Release Stage
   jobs:
   - job: ReleaseNuget
-    displayName: Release Nuget Package Job
+    displayName: Release Nuget Packages
     variables:
       BuildConfiguration: release
     steps:
