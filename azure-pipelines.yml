@@ -14,7 +14,7 @@ stages:
   displayName: Build Stage
   jobs:
   - job: BuildNuget
-    displayName: Build Nuget App Job
+    displayName: Build Nuget packages
     variables:
       BuildConfiguration: release
     steps:
@@ -27,18 +27,31 @@ stages:
         arguments: '--configuration $(BuildConfiguration)'
     
     - task: DotNetCoreCLI@2
+      displayName: Build
       inputs:
         command: 'build'
         projects: '**/*.csproj'
         arguments: '--configuration $(BuildConfiguration)'
 
     - task: DotNetCoreCLI@2
+      displayName: Pack
       inputs:
         command: 'pack'
         packagesToPack: '**/*.csproj'
         arguments: '--configuration $(BuildConfiguration)'
         versioningScheme: 'off'
-    
+
+    - task: CmdLine@2
+      inputs:
+        script: |
+          ls -l
+          dir
 
 
 
+    - task: DotNetCoreCLI@2
+      displayName: Publish Nuget to Artifact
+      inputs:
+        command: 'push'
+        nuGetFeedType: 'internal'
+        publishVstsFeed: 'bf6ceb81-0217-4c7b-a27e-44d755d73986'
