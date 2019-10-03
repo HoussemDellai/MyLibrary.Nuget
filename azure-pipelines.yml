@@ -52,7 +52,7 @@ stages:
       displayName: Publish to Artifact/drop
       inputs:
         ArtifactName: 'drop'
-        PathtoPublish: '$(Build.ArtifactStagingDirectory)/**/*.nupkg'
+        PathtoPublish: '$(Build.ArtifactStagingDirectory)/*.nupkg'
         publishLocation: 'Container'
     
 - stage: Release_Stage
