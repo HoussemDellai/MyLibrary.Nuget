@@ -41,18 +41,8 @@ stages:
         arguments: '--configuration $(BuildConfiguration)'
         versioningScheme: 'off'
 
-    - task: PublishBuildArtifacts@1
-      displayName: Publish to Artifact/drop
-      enabled: false
-      inputs:
-        ArtifactName: 'drop'
-        PathtoPublish: '$(Build.ArtifactStagingDirectory)/*.nupkg'
-        publishLocation: 'Container'
-
-  - job: ReleaseNuget
-    displayName: Release Nuget Packages
-    steps:
     - task: DotNetCoreCLI@2
+      displayName: Publish Nuget to Artifact
       inputs:
         command: 'push'
         packagesToPush: '**/*.nupkg'
