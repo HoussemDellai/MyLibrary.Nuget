@@ -47,11 +47,10 @@ stages:
           ls -l
           dir
 
-
-
     - task: DotNetCoreCLI@2
       displayName: Publish Nuget to Artifact
       inputs:
         command: 'push'
+        packagesToPush: '$(Build.ArtifactStagingDirectory)/*.nupkg'
         nuGetFeedType: 'internal'
-        publishVstsFeed: 'bf6ceb81-0217-4c7b-a27e-44d755d73986'
+        publishVstsFeed: '4f38e552-5d46-4864-a3b0-30420796148f'
