@@ -42,7 +42,7 @@ stages:
     - task: PublishBuildArtifacts@1
       inputs:
         ArtifactName: 'drop'
-        PathtoPublish: '$(Build.ArtifactStagingDirectory)/*.nupkg'
+        PathtoPublish: '**/*.nupkg'
         publishLocation: 'Container'
     
 
