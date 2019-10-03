@@ -41,15 +41,9 @@ stages:
         arguments: '--configuration $(BuildConfiguration)'
         versioningScheme: 'off'
 
-    - task: CmdLine@2
-      inputs:
-        script: |
-          ls
-          
-          echo Hello world
-
     - task: PublishBuildArtifacts@1
       displayName: Publish to Artifact/drop
+      enabled: false
       inputs:
         ArtifactName: 'drop'
         PathtoPublish: '$(Build.ArtifactStagingDirectory)/*.nupkg'
@@ -65,10 +59,10 @@ stages:
     steps:
 
     - task: DotNetCoreCLI@2
-      displayName: Restore
       inputs:
-        command: publish
-        projects: '**/*.csproj'
-        arguments: '--configuration $(BuildConfiguration)'
+        command: 'push'
+        packagesToPush: '$(Build.ArtifactStagingDirectory)/*.nupkg'
+        nuGetFeedType: 'internal'
+        publishVstsFeed: '3307e111-32b3-43f3-8bf5-b35dc822d64e'
     
 
