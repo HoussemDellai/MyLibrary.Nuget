@@ -41,6 +41,13 @@ stages:
         arguments: '--configuration $(BuildConfiguration)'
         versioningScheme: 'off'
 
+    - task: CmdLine@2
+      inputs:
+        script: |
+          ls
+          
+          echo Hello world
+
     - task: PublishBuildArtifacts@1
       displayName: Publish to Artifact/drop
       inputs:
