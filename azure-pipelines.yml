@@ -41,12 +41,6 @@ stages:
         arguments: '--configuration $(BuildConfiguration)'
         versioningScheme: 'off'
 
-    - task: CmdLine@2
-      inputs:
-        script: |
-          ls -l
-          dir
-
     - task: DotNetCoreCLI@2
       displayName: Publish Nuget to Artifact
       inputs:
