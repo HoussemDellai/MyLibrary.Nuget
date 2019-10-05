@@ -6,7 +6,7 @@ pool:
 
 stages:
 - stage: Build_Stage
-  displayName: Build Stage
+  displayName: 
   jobs:
   - job: BuildNuget
     displayName: Build Nuget packages
@@ -19,7 +19,6 @@ stages:
         command: 'restore'
         projects: '**/*.csproj'
         feedsToUse: 'select'
-        arguments: '--configuration $(BuildConfiguration)'
 
     - task: DotNetCoreCLI@2
       inputs:
@@ -38,4 +37,4 @@ stages:
         command: 'push'
         packagesToPush: '$(Build.ArtifactStagingDirectory)/*.nupkg'
         nuGetFeedType: 'internal'
-        publishVstsFeed: '23e1059b-3226-41a0-b6a4-c8ddb1d19e3e'
+        publishVstsFeed: 'f50482f5-11a3-4eea-9ab0-2b4c997bd0e2'
