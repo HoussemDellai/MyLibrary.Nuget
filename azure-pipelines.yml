@@ -39,7 +39,7 @@ stages:
         command: 'pack'
         packagesToPack: '**/*.csproj'
         versioningScheme: 'byEnvVar'
-        versionEnvVar: '$(version)'
+        versionEnvVar: 'version'
 
     - task: DotNetCoreCLI@2
       displayName: Push Nuget Package
