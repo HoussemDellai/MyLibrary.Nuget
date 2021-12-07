@@ -4,6 +4,9 @@ trigger:
 pool:
   vmImage: 'ubuntu-latest'
 
+variables:
+  version: 1.0.0-$(Build.BuildId)
+
 stages:
 - stage: Build_Stage
   displayName: 
@@ -33,7 +36,8 @@ stages:
       inputs:
         command: 'pack'
         packagesToPack: '**/*.csproj'
-        versioningScheme: 'off'
+        versioningScheme: 'byEnvVar'
+        versionEnvVar: '$(version)'
 
     - task: DotNetCoreCLI@2
       displayName: Push Nuget Package
